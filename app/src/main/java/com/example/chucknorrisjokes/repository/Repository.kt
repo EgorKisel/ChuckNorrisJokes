@@ -2,6 +2,6 @@ package com.example.chucknorrisjokes.repository
 
 interface Repository {
 
-    fun getJokeFromServer(): Any
-    fun getJokeFromLocalStorage(): Any
+    fun getJokeFromServer(): Joke
+    fun getJokeFromLocalStorage(): Joke
 }
