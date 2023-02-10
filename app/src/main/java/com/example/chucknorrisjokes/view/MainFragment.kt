@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,11 +29,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        val observer = object : Observer<AppState> {
-            override fun onChanged(data: AppState) {
-                renderData(data)
-            }
-        }
+        val observer =
+            Observer<AppState> { data -> renderData(data) }
         viewModel.getLivedata().observe(viewLifecycleOwner, observer)
         viewModel.getJoke()
     }
@@ -45,7 +42,6 @@ class MainFragment : Fragment() {
             is AppState.Success -> {
                 binding.progressBarMain.visibility = View.GONE
                 binding.joke.text = "${appState.jokeData}"
-                   // appState.jokeData.joke.toString()
             }
         }
     }
