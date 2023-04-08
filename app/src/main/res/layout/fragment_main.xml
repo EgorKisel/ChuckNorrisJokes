@@ -8,13 +8,13 @@
 
     <ProgressBar
         android:id="@+id/progressBarMain"
-        app:layout_constraintTop_toBottomOf="@id/btnGetOtherJoke"
-        app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart"
-        app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
+        app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart"
+        app:layout_constraintTop_toBottomOf="@id/btnGetOtherJoke" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineVerticalStart"
@@ -83,18 +83,26 @@
         app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart"
         app:layout_constraintTop_toBottomOf="@+id/btnsBarrier" />
 
-    <TextView
-        android:id="@+id/joke"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/jokeScroll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="22sp"
-        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
         app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart"
-        app:layout_constraintTop_toBottomOf="@id/imgChuck"
-        tools:text="Chuck Norris has a pentagram tattooed around his cornhole." />
+        app:layout_constraintTop_toBottomOf="@id/imgChuck">
+
+        <TextView
+            android:id="@+id/joke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="22sp"
+            app:layout_constrainedWidth="true"
+            tools:text="Chuck Norris has a pentagram tattooed around his cornhole." />
+
+    </ScrollView>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/jokeBarrier"
@@ -102,16 +110,16 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="joke"/>
+        app:constraint_referenced_ids="jokeScroll" />
 
     <Button
         android:id="@+id/btnGetOtherJoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="@string/get_other_joke"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/jokeBarrier"
-        app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart"
         app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintStart_toEndOf="@id/guidelineVerticalStart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
