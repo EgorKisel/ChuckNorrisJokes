@@ -19,6 +19,8 @@ class JokeLoader(private val onServerResponseListener: OnServerResponse) {
 
         Thread {
             try {
+                val headers = urlConnection.headerFields
+                val responseCode = urlConnection.responseCode
                 val buffer = BufferedReader(InputStreamReader(urlConnection.inputStream))
                 val jokeResponse: JokeResponse = Gson().fromJson(buffer, JokeResponse::class.java)
                 Handler(Looper.getMainLooper()).post {
